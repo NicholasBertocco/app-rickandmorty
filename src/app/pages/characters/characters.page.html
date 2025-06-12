@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Personagens</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let character of characters" [routerLink]="['/character' , character.id]">
+      <ion-avatar>
+        <img [src]="character.image" alt="{{ character.name }}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ character.name }}</h2>
+        <p>Species: {{ character.species }}</p>
+        <p>Status: {{ character.status }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more characters...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

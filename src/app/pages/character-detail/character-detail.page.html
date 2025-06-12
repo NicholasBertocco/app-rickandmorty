@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slots="start">
+      <ion-back-button (click)=goBack()></ion-back-button>
+      <ion-title>Detalhes do Personagem</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="character">
+    <ion-card-header>
+      <ion-card-title>{{ character.name }}</ion-card-title>
+      <ion-card-subtitle>{{ character.species }} - {{ character.status }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <img [src]="character.image" alt="{{ character.name }}" />
+      <p>
+        <strong>Gênero:</strong> {{ character.gender }}<br />
+        <strong>Origem:</strong> {{ character.origin.name }}<br />
+        <strong>Localização:</strong> {{ character.location.name }}<br />
+        <strong>Tipo:</strong> {{ character.type || 'N/A' }}<br />
+        <strong>Data de Criação:</strong> {{ character.created | date: 'medium' }}<br />
+        <strong>Primeira Aparição:</strong> {{ character.episode[0] || 'N/A' }}<br />
+        <strong>Quantidade de Episódios:</strong> {{ character.episode.length }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
